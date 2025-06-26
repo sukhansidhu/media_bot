@@ -1,0 +1,11 @@
+# media_bot/.dockerignore
+.env
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+.DS_Store
+downloads/
+uploads/
+thumbnails/
+metadata/
