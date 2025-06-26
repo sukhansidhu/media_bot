@@ -1,4 +1,3 @@
-# media_bot/utils/progress_tracker.py
 import time
 import os
 from config import Config
