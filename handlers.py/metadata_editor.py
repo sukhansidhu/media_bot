@@ -1,4 +1,3 @@
-# media_bot/handlers/metadata_editor.py
 import os
 import logging
 from telegram import Update
@@ -31,7 +30,7 @@ async def process_metadata_video(update: Update, context: ContextTypes.DEFAULT_T
         await update.message.reply_text("Please send a valid video file.")
         return
     
-    # Create directories if not exist
+    # Create directories
     os.makedirs(Config.DOWNLOAD_PATH, exist_ok=True)
     os.makedirs(Config.METADATA_DIR, exist_ok=True)
     
@@ -122,7 +121,6 @@ async def handle_metadata_actions(update: Update, context: ContextTypes.DEFAULT_
     streams = user_data.get('streams', [])
     
     if data == "show_progress":
-        # Show download progress again
         await query.edit_message_text(
             "Downloading Video File",
             reply_markup=progress_keyboard()
@@ -159,7 +157,6 @@ async def handle_metadata_actions(update: Update, context: ContextTypes.DEFAULT_
         video_path = user_data.get('video_path')
         if video_path:
             await query.edit_message_text("Processing...")
-            # Process video with edited metadata
             output_path = os.path.join(Config.UPLOAD_PATH, generate_unique_filename(
                 Config.UPLOAD_PATH, os.path.basename(video_path))
             )
@@ -188,7 +185,6 @@ async def process_metadata_edit(update: Update, context: ContextTypes.DEFAULT_TY
     streams = user_data.get('streams', [])
     
     if expecting == 'metadata_edit':
-        # Single stream edit
         stream_id = user_data.get('current_stream')
         if stream_id is not None:
             stream = next((s for s in streams if s['id'] == stream_id), None)
@@ -206,7 +202,6 @@ async def process_metadata_edit(update: Update, context: ContextTypes.DEFAULT_TY
                     f"Language: {stream['language']}"
                 )
     elif expecting == 'all_metadata':
-        # Edit all streams
         for line in text.split('\n'):
             parts = line.split('|')
             if len(parts) >= 2:
