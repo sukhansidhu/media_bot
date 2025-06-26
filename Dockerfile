@@ -1,18 +1,29 @@
+# Use Python 3.10 base image
 FROM python:3.10-slim-buster
 
+# Install system dependencies and FFmpeg
 RUN apt-get update && \
     apt-get install -y ffmpeg && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV BOT_TOKEN=$BOT_TOKEN
+
+# Set work directory
 WORKDIR /app
 
-COPY media_bot/requirements.txt .
-
+# Copy requirements and install dependencies
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY media_bot .
+# Copy project
+COPY . .
 
+# Create media directories
 RUN mkdir -p downloads uploads thumbnails metadata
 
-CMD ["python", "main.py"]
+# Run the bot
+CMD ["python", "-m", "media_bot"]
