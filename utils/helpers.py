@@ -1,10 +1,7 @@
-# media_bot/utils/helpers.py
 import os
 import re
 import math
 import time
-import shutil
-import subprocess
 from datetime import datetime
 from pymediainfo import MediaInfo
 
