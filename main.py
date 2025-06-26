@@ -1,4 +1,3 @@
-# media_bot/main.py
 import logging
 import os
 from telegram.ext import Application, CommandHandler, MessageHandler, filters
