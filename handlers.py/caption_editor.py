@@ -1,4 +1,3 @@
-# media_bot/handlers/caption_editor.py
 import logging
 from telegram import Update
 from telegram.ext import ContextTypes, CallbackQueryHandler, MessageHandler, filters
@@ -28,7 +27,6 @@ async def handle_caption_actions(update: Update, context: ContextTypes.DEFAULT_T
         )
         context.user_data['expecting'] = 'new_caption'
     elif data == "caption_Remove_Caption":
-        # Logic to remove caption
         await query.edit_message_text("Caption removed successfully!")
     elif data == "caption_Add_Button":
         await query.edit_message_text(
@@ -37,7 +35,6 @@ async def handle_caption_actions(update: Update, context: ContextTypes.DEFAULT_T
         )
         context.user_data['expecting'] = 'new_button'
     elif data == "caption_Remove_Button":
-        # Logic to remove buttons
         await query.edit_message_text("Buttons removed successfully!")
     elif data == "caption_Add_New_Caption":
         await query.edit_message_text(
@@ -46,7 +43,6 @@ async def handle_caption_actions(update: Update, context: ContextTypes.DEFAULT_T
         )
         context.user_data['expecting'] = 'replace_caption'
     elif data == "caption_Forward_Button":
-        # Logic to add forward button
         await query.edit_message_text("Forward button added successfully!")
     elif data == "caption_Back":
         await query.edit_message_text(
@@ -67,13 +63,10 @@ async def process_caption_input(update: Update, context: ContextTypes.DEFAULT_TY
     text = update.message.text
     
     if expecting == 'new_caption':
-        # Add caption to message
         await update.message.reply_text(f"Caption added: {text}")
     elif expecting == 'replace_caption':
-        # Replace existing caption
         await update.message.reply_text(f"Caption replaced: {text}")
     elif expecting == 'new_button':
-        # Add new button
         if '|' in text:
             btn_text, url = text.split('|', 1)
             await update.message.reply_text(f"Button added: {btn_text} -> {url}")
