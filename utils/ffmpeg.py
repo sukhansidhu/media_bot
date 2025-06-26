@@ -1,4 +1,3 @@
-# media_bot/utils/ffmpeg.py
 import os
 import subprocess
 import logging
@@ -28,7 +27,6 @@ def edit_metadata(input_path, output_path, metadata):
     try:
         cmd = [Config.FFMPEG_PATH, "-i", input_path]
         
-        # Add metadata mapping
         for i, meta in enumerate(metadata):
             if meta.get('title') or meta.get('language'):
                 cmd.extend(["-metadata", f"{meta['type']}:{i}={meta.get('title','')}"])
@@ -45,7 +43,6 @@ def edit_metadata(input_path, output_path, metadata):
 
 def merge_videos(video_paths, output_path):
     try:
-        # Create input file list
         list_path = os.path.join(Config.UPLOAD_PATH, "filelist.txt")
         with open(list_path, "w") as f:
             for path in video_paths:
