@@ -26,4 +26,4 @@ COPY . .
 RUN mkdir -p downloads uploads thumbnails metadata
 
 # Run the bot
-CMD ["python", "-m", "media_bot"]
+CMD ["python", "main.py"]  # Changed from python -m media_bot to python main.py
