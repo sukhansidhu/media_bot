@@ -25,7 +25,6 @@ async def menu_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await start_metadata_editor(update, context)
     elif data == "Cancel X":
         await query.delete_message()
-    # Add other feature handlers here
 
 def setup_menu_handlers(application):
     application.add_handler(CallbackQueryHandler(menu_callback))
