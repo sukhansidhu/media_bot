@@ -11,6 +11,7 @@ RUN apt-get update && \
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV BOT_TOKEN=$BOT_TOKEN
+ENV PYTHONPATH=/app
 
 # Set work directory
 WORKDIR /app
@@ -25,5 +26,5 @@ COPY . .
 # Create media directories
 RUN mkdir -p downloads uploads thumbnails metadata
 
-# Run the bot - FIXED SYNTAX
+# Run the bot
 CMD python main.py
