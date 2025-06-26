@@ -25,5 +25,5 @@ COPY . .
 # Create media directories
 RUN mkdir -p downloads uploads thumbnails metadata
 
-# Run the bot
-CMD ["python", "main.py"]  # Changed from python -m media_bot to python main.py
+# Run the bot - FIXED SYNTAX
+CMD python main.py
